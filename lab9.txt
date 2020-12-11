@@ -1,0 +1,96 @@
+Jerry Yang 005384352
+Assignment 9 Lab
+
+1) Disk Space
+cd ~eggert/src/gnu/emacs-CS-35L
+du -sh
+cd ./git
+du -sh
+
+Working Directory Disk Space = 577M
+Git = 415M
+
+Files that take up the most space:
+
+du --block-size=MB | sort -n
+9MB     ./objects/info
+426MB   ./objects/pack
+434MB   ./objects
+435MB   .
+
+Obviously the '.' file contains the most cause its technically the entire file,
+other than that the ./objects dir contains the second most and ./objects/pack
+is the file with the 3rd most. Make sense as these are the branches in the
+file tree that hold most of the objects/info.
+
+2) Branches
+git branch | wc -l
+git branch -r | wc -l
+
+176 (local)
+177 (remote)
+
+3) Repositories
+git remote -v 
+origin  /u/cs/fac/eggert/src/gnu/emacs (fetch)
+origin  /u/cs/fac/eggert/src/gnu/emacs (push)
+savannah        https://git.savannah.gnu.org/git/emacs.git (fetch)
+savannah        https://git.savannah.gnu.org/git/emacs.git (push)
+
+1 remote repository at git.svannah.gnu
+
+4) Local Branches
+git for-each-ref --sort=-committerdate refs/heads/ | head -n 10
+
+104b68b670eb6de6614c562ae6b18c009b20584f commit refs/heads/master
+d2873706749ef68803e79bab6109a534f4c9d23a commit refs/heads/scratch/joaot/make-completion-at-point-function
+dd3fa9411a28175f9a1a984a69cfa7162023c5df commit refs/heads/feature/windows-with-utils
+8f22251e595d7598d6643b0d24bf5f409dc59fa8 commit refs/heads/scratch/completion-api
+8a4de19dfb52551a65c360a9346ede137d0fc6e8 commit refs/heads/scratch/a-modest-completion-redesign-proposal
+2b0f589134d9427a96ab8cf0d8473715740984ef commit refs/heads/scratch/fido-mode
+924a4201d24c10c48db920815ebf98dfaadc1e85 commit refs/heads/feature/gnus-select2
+7a10082093791f0e035e4f9f95a774a7be1cd586 commit refs/heads/feature/extend_face_id
+079461b360a2467ff4ab2ec57516c6f9e45f50fe commit refs/heads/scratch/jit-lock-antiblink-cleaned-up
+55dcd32ad2209dc34bfb6b713bf73be9bf4c4cb2 commit refs/heads/emacs-26
+
+5) Master Branch Commits
+git rev-list --count master
+
+141268 (number of master branch commits)
+
+6) Shared Commits
+git rev-list --count --all
+
+145595 (total number of commits)
+
+97.028% of commits were done to the master branch.
+
+7) Commit Authors
+git shortlog -sn --since="2013" | head -n 10
+
+  3430  Eli Zaretskii
+  3345  Paul Eggert
+  2749  Glenn Morris
+  1833  Lars Ingebrigtsen
+  1482  Michael Albinus
+  1461  Stefan Monnier
+   604  Noam Postavsky
+   560  Dmitry Gutov
+   509  Juri Linkov
+   473  Alan Mackenzie
+
+8) Commit Diagram
+cd ~eggert/src/gnu/emacs-CS-35L
+gitk 
+4ea37c2b8b0c5a68fde59770c3536195e0972217 
+977cd6cb28a37744966ec62f70cf62659f6f302a 
+625cee531623feddbe3174fad52c7db96ec60bb3 
+5490ccc5ebf39759dfd084bbd31f464701a3e775 
+0c06b93c1e467debd401eb0b3be4652fde14fa95 
+820739bbb572b30b6ce45756c9960e48dca859af 
+00e4e3e9d273a193620c3a4bb4914e555cb8e343 
+49cd561dc62ea6b3fbedab7aef0f020733f4cf09 
+abcb2e62dae6aa26308f7ac9efc89247f89cbe65 
+98ac36efe4ce4bd3a0bca76fc73ce6c7abaa4371
+
+d i a g r a m 
